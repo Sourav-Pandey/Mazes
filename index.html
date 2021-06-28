@@ -27,7 +27,7 @@
 </head>
 <body>
 	<div class=x>
-		<h1>Everytime you refresh it will generate a different maze and solve it after creation</h1>
+		<h1>Everytime you refresh it will generate a different maze and solve it after 5 seconds of creation</h1>
 		<canvas class="maze"> </canvas></div>
 <script type="text/javascript">
 	let maze=document.querySelector(".maze");
@@ -58,6 +58,15 @@
 				this.grid.push(row);
 			}
 			current=this.grid[0][0];
+		}
+		wait(ms)
+		{
+			var start=new Date().getTime();
+			var end=start;
+			while(end<start+ms)
+			{
+				end=new Date().getTime();
+			}
 		}
 		solve()
 		{
@@ -122,6 +131,7 @@
 			if(this.stack.length==0)
 			{
 				current.Finalhighlight(this.columns);
+				this.wait(5000);
 				this.solve();
 				return;
 			}
